@@ -1,99 +1,56 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Phone, MapPin, Paintbrush, Sparkles } from 'lucide-react';
-
-const steps = [
-  {
-    number: '1',
-    icon: Phone,
-    title: 'Ne suni',
-    description: 'Un apel și stabilim totul',
-  },
-  {
-    number: '2',
-    icon: MapPin,
-    title: 'Stabilim rapid detaliile',
-    description: 'Vedem locația, discutăm',
-  },
-  {
-    number: '3',
-    icon: Paintbrush,
-    title: 'Ne apucăm de treabă',
-    description: 'Lucrăm curat și rapid',
-  },
-  {
-    number: '4',
-    icon: Sparkles,
-    title: 'La final: curat și gata',
-    description: 'Pereți ca noi',
-  },
-];
-
 export function Process() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const steps = [
+    {
+      num: "1",
+      title: "Mă suni",
+      desc: "Îmi spui ce ai nevoie și stabilim o vizită.",
+    },
+    {
+      num: "2",
+      title: "Evaluare",
+      desc: "Vedem locația și discutăm detaliile.",
+    },
+    {
+      num: "3",
+      title: "Executare",
+      desc: "Fac lucrarea curat și la timp.",
+    },
+    {
+      num: "4",
+      title: "Predare",
+      desc: "Verifici și plătești când ești mulțumit.",
+    },
+  ];
 
   return (
-    <section className="py-20 md:py-32 bg-white" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-[#1A1A1A]">
-            Cum funcționează
+    <section className="section-padding bg-grey-100">
+      <div className="container-custom">
+        <div className="max-w-xl mx-auto text-center mb-10">
+          <h2 className="text-black mb-3">
+            Cum lucrăm
           </h2>
-        </motion.div>
+          <p className="text-grey-600">
+            Proces simplu, fără complicații.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: 0.15 * index,
-                ease: 'easeOut',
-              }}
-              className="relative"
-            >
-              {/* Connector line - hidden on mobile and last item */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-[60%] w-[80%] h-px bg-[#E5E5E5]" />
-              )}
-
-              <div className="text-center">
-                {/* Number Circle */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.2 + 0.15 * index,
-                    ease: 'easeOut',
-                  }}
-                  className="w-16 h-16 rounded-full bg-[#5A7D6F] flex items-center justify-center mx-auto mb-5"
-                >
-                  <span className="text-white font-semibold text-xl">{step.number}</span>
-                </motion.div>
-
-                {/* Icon */}
-                <div className="flex justify-center mb-3">
-                  <step.icon className="w-6 h-6 text-[#6B6B6B]" strokeWidth={1.5} />
-                </div>
-
-                {/* Content */}
-                <h3 className="font-heading text-lg font-semibold text-[#1A1A1A] mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-[#6B6B6B]">{step.description}</p>
-              </div>
-            </motion.div>
+            <div key={index} className="bg-white rounded-lg p-5 text-center">
+              <span className="text-brand font-semibold text-lg">{step.num}.</span>
+              <h3 className="text-black mt-2 mb-1">{step.title}</h3>
+              <p className="text-grey-600 text-sm">{step.desc}</p>
+            </div>
           ))}
+        </div>
+
+        <div className="mt-8 max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg p-4 flex items-center gap-3">
+            <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0" />
+            <p className="text-sm text-grey-700">
+              <span className="font-medium">Avans în funcție de lucrare.</span> Discutăm termenii de plată la evaluare.
+            </p>
+          </div>
         </div>
       </div>
     </section>

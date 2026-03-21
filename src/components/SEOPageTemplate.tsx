@@ -1,221 +1,130 @@
-import { motion } from 'framer-motion';
-import { Phone, MapPin, CheckCircle, ArrowLeft } from 'lucide-react';
-import { Navbar } from './Navbar';
-import { FAQ } from './FAQ';
-import { PageSchemaMarkup, FAQSchemaMarkup } from './SchemaMarkup';
-import { Link } from 'react-router-dom';
+import { ArrowLeft, Phone, MapPin } from "lucide-react";
+import { Logo } from "./Logo";
+import { FAQ } from "./FAQ";
+import { FinalCTA } from "@/sections/FinalCTA";
+import { Footer } from "@/sections/Footer";
+import { PageSchemaMarkup } from "./SchemaMarkup";
 
 interface SEOPageTemplateProps {
-  metaTitle: string;
-  metaDescription: string;
-  h1: string;
-  problemText: string;
-  solutionText: string;
-  areaText: string;
-  faqs: Array<{ question: string; answer: string }>;
-  showBackLink?: boolean;
+  title: string;
+  headline: string;
+  description: string;
+  locationName: string;
+  locationDescription: string;
+  areaServed: string[];
 }
 
 export function SEOPageTemplate({
-  metaTitle,
-  metaDescription,
-  h1,
-  problemText,
-  solutionText,
-  areaText,
-  faqs,
-  showBackLink = true,
+  title,
+  headline,
+  description,
+  locationName,
+  locationDescription,
+  areaServed,
 }: SEOPageTemplateProps) {
-  const handleCall = () => {
-    window.location.href = 'tel:0774613207';
-  };
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* Schema Markup */}
-      <PageSchemaMarkup
-        title={metaTitle}
-        description={metaDescription}
-        url={`https://pensulacurata.ro${window.location.pathname}`}
-      />
-      <FAQSchemaMarkup faqs={faqs} />
+    <main className="min-h-screen">
+      <PageSchemaMarkup title={title} description={description} />
 
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pb-24 bg-[#FAFAFA]">
-        <div className="max-w-4xl mx-auto px-6 md:px-12">
-          {/* Back Link */}
-          {showBackLink && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8"
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-grey-200">
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-14">
+            <a href="/">
+              <Logo size="sm" />
+            </a>
+            <a 
+              href="tel:0774613207"
+              className="bg-brand hover:bg-brand-dark text-white text-sm font-medium px-4 py-2 rounded-md transition-colors"
             >
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-[#6B6B6B] hover:text-[#5A7D6F] transition-colors text-sm"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Înapoi la pagina principală
-              </Link>
-            </motion.div>
-          )}
-
-          {/* Hero Content */}
-          <div className="text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-              className="font-heading text-4xl md:text-5xl font-semibold text-[#1A1A1A] leading-tight mb-6"
-            >
-              {h1}
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-              className="text-lg md:text-xl text-[#6B6B6B] mb-10"
-            >
-              Sună acum și stabilim detaliile
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            >
-              <motion.button
-                onClick={handleCall}
-                className="inline-flex items-center gap-3 bg-[#5A7D6F] text-white px-10 py-5 rounded-lg font-medium text-lg shadow-[0_4px_12px_rgba(90,125,111,0.25)] hover:bg-[#4A6B5E] transition-colors duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Phone className="w-5 h-5" />
-                Sună acum
-              </motion.button>
-            </motion.div>
+              Sună acum
+            </a>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Problem + Solution Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-            {/* Problem */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              <h2 className="font-heading text-2xl font-semibold text-[#1A1A1A] mb-4">
-                Problema
-              </h2>
-              <p className="text-[#6B6B6B] leading-relaxed">{problemText}</p>
-            </motion.div>
+      {/* Hero */}
+      <section className="pt-20 pb-12 bg-grey-100">
+        <div className="container-custom max-w-2xl text-center">
+          <a 
+            href="/"
+            className="inline-flex items-center gap-2 text-grey-500 hover:text-brand text-sm mb-6"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Înapoi
+          </a>
 
-            {/* Solution */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            >
-              <h2 className="font-heading text-2xl font-semibold text-[#1A1A1A] mb-4">
-                Soluția noastră
-              </h2>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#5A7D6F] mt-1 flex-shrink-0" />
-                <p className="text-[#1A1A1A] leading-relaxed">{solutionText}</p>
-              </div>
-            </motion.div>
+          <div className="inline-flex items-center gap-2 bg-brand/10 text-brand-dark px-3 py-1 rounded-full text-sm font-medium mb-4">
+            <MapPin className="w-4 h-4" />
+            {locationName}
           </div>
+
+          <h1 className="text-black mb-4 text-2xl md:text-3xl lg:text-4xl">
+            {headline}
+          </h1>
+          <p className="text-grey-600 text-lg mb-6">
+            {description}
+          </p>
+
+          <a 
+            href="tel:0774613207"
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-medium px-6 py-3 rounded-md transition-colors"
+          >
+            <Phone className="w-4 h-4" />
+            Sună: 0774 613 207
+          </a>
         </div>
       </section>
 
-      {/* Area Section */}
-      <section className="py-16 md:py-24 bg-[#FAFAFA]">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-[#5A7D6F]" />
-              <h2 className="font-heading text-2xl font-semibold text-[#1A1A1A]">
-                Zona deservită
-              </h2>
-            </div>
-            <p className="text-[#6B6B6B] text-lg">{areaText}</p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <FAQ items={faqs} />
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-[#5A7D6F]">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold text-white mb-6">
-              Ai nevoie de zugrăveli?
+      {/* Content */}
+      <section className="py-12 bg-white">
+        <div className="container-custom max-w-2xl">
+          <div className="text-center mb-8">
+            <h2 className="text-black mb-3 text-xl md:text-2xl">
+              Servicii în {locationName}
             </h2>
-            <p className="text-white/80 text-lg mb-8">
-              Sună acum și îți răspundem rapid
+            <p className="text-grey-600">
+              {locationDescription}
             </p>
-            <motion.button
-              onClick={handleCall}
-              className="inline-flex items-center gap-3 bg-white text-[#5A7D6F] px-10 py-5 rounded-lg font-medium text-lg hover:bg-[#FAFAFA] transition-colors duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Phone className="w-5 h-5" />
-              0774 613 207
-            </motion.button>
-          </motion.div>
+          </div>
+
+          <h3 className="text-black mb-3 text-lg text-center">Zone acoperite</h3>
+          <div className="grid sm:grid-cols-2 gap-2 mb-8 max-w-lg mx-auto">
+            {areaServed.map((area, index) => (
+              <div key={index} className="flex items-center gap-2 text-grey-700 justify-center sm:justify-start">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+                {area}
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <h3 className="text-black mb-3 text-lg">De ce să mă alegi</h3>
+            <ul className="space-y-2 text-grey-600 max-w-md mx-auto">
+              <li className="flex items-start gap-2 justify-center">
+                <span className="text-brand">✓</span>
+                Evaluare gratuită în 24h
+              </li>
+              <li className="flex items-start gap-2 justify-center">
+                <span className="text-brand">✓</span>
+                Garanție 2 ani
+              </li>
+              <li className="flex items-start gap-2 justify-center">
+                <span className="text-brand">✓</span>
+                Disponibil și în weekend
+              </li>
+              <li className="flex items-start gap-2 justify-center">
+                <span className="text-brand">✓</span>
+                Avans în funcție de lucrare
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 bg-white border-t border-[#E5E5E5]">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <Link to="/">
-              <span className="font-heading text-xl font-semibold text-[#1A1A1A]">Pensula Curată</span>
-            </Link>
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-[#6B6B6B]">
-              <a
-                href="tel:0774613207"
-                className="flex items-center gap-2 hover:text-[#5A7D6F] transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span className="font-medium">0774 613 207</span>
-              </a>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
-                <span>Târgoviște, Dâmbovița</span>
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 pt-6 border-t border-[#E5E5E5] text-center text-sm text-[#6B6B6B]">
-            © {new Date().getFullYear()} Pensula Curată. Toate drepturile rezervate.
-          </div>
-        </div>
-      </footer>
-    </div>
+      <FAQ />
+      <FinalCTA />
+      <Footer />
+    </main>
   );
 }

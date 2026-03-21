@@ -1,73 +1,70 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useState } from "react";
 
 interface FAQItem {
-  question: string;
-  answer: string;
+  q: string;
+  a: string;
 }
 
-interface FAQProps {
-  items: FAQItem[];
-  title?: string;
-}
+const faqs: FAQItem[] = [
+  {
+    q: "Cât costă să zugrăvesc un apartament?",
+    a: "Depinde de suprafață și starea pereților. Pentru un apartament cu 2 camere (50-60mp), prețul pornește de la 2.500 lei. Mă suni pentru o evaluare exactă.",
+  },
+  {
+    q: "Cât durează o zugrăveală?",
+    a: "Un apartament cu 2 camere durează 2-3 zile. O casă mai mare poate dura 5-7 zile. Îți spun termenul exact înainte să încep.",
+  },
+  {
+    q: "Lucrezi și în weekend?",
+    a: "Da, lucrez și sâmbăta și duminica pentru cei care nu pot fi acasă în timpul săptămânii.",
+  },
+  {
+    q: "Oferi garanție?",
+    a: "Da, ofer 2 ani garanție pentru orice lucrare. Dacă apar probleme, rezolv fără costuri.",
+  },
+  {
+    q: "Lucrezi în tot județul?",
+    a: "Acopăr Târgoviște și localitățile din jur: Moreni, Pucioasa, Găești, Titu. Transport gratuit în raza de 30km.",
+  },
+  {
+    q: "Trebuie să golesc apartamentul?",
+    a: "Nu. Protejez mobilierul cu folii și prelate. Mut ce e nevoie și aduc totul la loc la final.",
+  },
+];
 
-export function FAQ({ items, title = "Întrebări frecvente" }: FAQProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-24 bg-[#FAFAFA]" ref={ref}>
-      <div className="max-w-3xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center mb-10"
-        >
-          <h2 className="font-heading text-2xl md:text-3xl font-semibold text-[#1A1A1A]">
-            {title}
+    <section className="py-16 md:py-20 bg-white border-t border-grey-100">
+      <div className="container-custom max-w-2xl">
+        <div className="text-center mb-12">
+          <h2 className="text-black mb-3 text-2xl md:text-3xl">
+            Întrebări frecvente
           </h2>
-        </motion.div>
+          <p className="text-grey-600">
+            Ai o întrebare? Sună-mă la 0774 613 207.
+          </p>
+        </div>
 
-        <div className="space-y-4">
-          {items.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * index, ease: 'easeOut' }}
-              className="bg-white rounded-xl border border-[#E5E5E5] overflow-hidden"
-            >
+        <div className="space-y-3">
+          {faqs.map((f, i) => (
+            <div key={i} className="bg-grey-50 rounded-lg overflow-hidden">
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#FAFAFA] transition-colors"
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full flex items-center justify-between p-4 text-left"
               >
-                <span className="font-medium text-[#1A1A1A] pr-4">{item.question}</span>
-                <motion.div
-                  animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ChevronDown className="w-5 h-5 text-[#5A7D6F] flex-shrink-0" />
-                </motion.div>
+                <span className="font-medium text-black pr-4 text-sm">{f.q}</span>
+                <span className="text-brand text-xl flex-shrink-0">
+                  {open === i ? "−" : "+"}
+                </span>
               </button>
-              <motion.div
-                initial={false}
-                animate={{
-                  height: openIndex === index ? 'auto' : 0,
-                  opacity: openIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 pb-5 text-[#6B6B6B]">
-                  {item.answer}
+              {open === i && (
+                <div className="px-4 pb-4">
+                  <p className="text-grey-600 text-sm leading-relaxed">{f.a}</p>
                 </div>
-              </motion.div>
-            </motion.div>
+              )}
+            </div>
           ))}
         </div>
       </div>

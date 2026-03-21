@@ -1,51 +1,30 @@
+import { useLocation } from "react-router-dom";
+
 export function SchemaMarkup() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Pensula Curată",
-    "description": "Servicii profesionale de zugrăveli interioare în Târgoviște și județul Dâmbovița. Lucrăm curat, rapid și fără complicații.",
+    "description": "Servicii de zugrăvit în Târgoviște și județul Dâmbovița",
     "url": "https://pensulacurata.ro",
     "telephone": "+40774613207",
-    "email": "",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Târgoviște",
       "addressRegion": "Dâmbovița",
       "addressCountry": "RO"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "44.9287",
-      "longitude": "25.4609"
-    },
     "areaServed": [
-      {
-        "@type": "City",
-        "name": "Târgoviște"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Județul Dâmbovița"
-      }
+      { "@type": "City", "name": "Târgoviște" },
+      { "@type": "City", "name": "Moreni" },
+      { "@type": "City", "name": "Pucioasa" },
+      { "@type": "City", "name": "Găești" },
+      { "@type": "City", "name": "Titu" },
+      { "@type": "AdministrativeArea", "name": "Județul Dâmbovița" }
     ],
-    "serviceType": [
-      "Zugrăveli interioare",
-      "Îndreptare pereți",
-      "Reparații minore"
-    ],
+    "serviceType": ["Zugrăveli interioare", "Gletuit", "Vopsitorie"],
     "priceRange": "€€",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "08:00",
-      "closes": "18:00"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+40774613207",
-      "contactType": "customer service",
-      "availableLanguage": ["Romanian"]
-    }
+    "openingHours": "Mo-Sa 08:00-18:00"
   };
 
   return (
@@ -56,13 +35,10 @@ export function SchemaMarkup() {
   );
 }
 
-interface PageSchemaProps {
-  title: string;
-  description: string;
-  url: string;
-}
-
-export function PageSchemaMarkup({ title, description, url }: PageSchemaProps) {
+export function PageSchemaMarkup({ title, description }: { title: string; description: string }) {
+  const location = useLocation();
+  const url = `https://pensulacurata.ro${location.pathname}`;
+  
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -72,38 +48,8 @@ export function PageSchemaMarkup({ title, description, url }: PageSchemaProps) {
     "mainEntity": {
       "@type": "LocalBusiness",
       "name": "Pensula Curată",
-      "telephone": "+40774613207",
-      "areaServed": {
-        "@type": "City",
-        "name": "Târgoviște"
-      }
+      "telephone": "+40774613207"
     }
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
-interface FAQSchemaProps {
-  faqs: Array<{ question: string; answer: string }>;
-}
-
-export function FAQSchemaMarkup({ faqs }: FAQSchemaProps) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
   };
 
   return (
