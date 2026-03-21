@@ -14,8 +14,6 @@ export function Hero() {
   return (
     <section className="pt-24 pb-12 md:pt-32 md:pb-20 bg-white overflow-hidden">
       <div className="container-custom">
-        {/* Mobile: Title, subtitle, image, content */}
-        {/* Desktop: Title + content left, image right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Content */}
           <div className="order-1">
@@ -28,13 +26,13 @@ export function Hero() {
               Zugrăvit, gletuit, finisaje. Calitate și seriozitate.
             </p>
 
-            {/* Image - Only on mobile */}
+            {/* Image - Full width on mobile */}
             <div className="md:hidden mb-6">
-              <div className="relative w-full max-w-[280px] aspect-square mx-auto">
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
                 <img
                   src="/images/eu.jpg"
                   alt="La lucru"
-                  className="w-full h-full object-cover rounded-lg shadow-lg"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
