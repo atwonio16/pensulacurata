@@ -1,19 +1,19 @@
-const benefits = [
+﻿const benefits = [
   {
-    title: "Lucrez curat",
-    description: "Acopăr tot înainte de lucru și las curat după. Nu trebuie să faci curat după mine.",
+    title: "Lucrări curate",
+    description: "Acopăr mobilierul, protejez pardoseala și las spațiul curat la final, fără surprize.",
     icon: "/images/icon-clean.png",
     alt: "Icon lucrări curate",
   },
   {
     title: "Respect termenul",
-    description: "Stabilim un termen și îl respect. Fără întârzieri sau scuze.",
+    description: "Stabilim de la început un calendar clar și îl respect pas cu pas, fără întârzieri.",
     icon: "/images/icon-time.png",
-    alt: "Icon respect termen",
+    alt: "Icon respectare termen",
   },
   {
-    title: "Preț corect de la început",
-    description: "Spun prețul clar de la început. Fără costuri ascunse sau surprize.",
+    title: "Preț corect",
+    description: "Primești ofertă transparentă, cu detalii pe lucrare, materiale și durată de execuție.",
     icon: "/images/icon-price.png",
     alt: "Icon preț corect",
   },
@@ -21,58 +21,30 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-16 md:py-20 bg-white border-t border-grey-100">
+    <section className="section-wrap border-t border-grey-100 bg-grey-50">
       <div className="container-custom">
-        {/* Header */}
-        <div className="max-w-xl mx-auto text-center mb-14">
-          <h2 className="text-black text-2xl md:text-3xl mb-3">
-            De ce mă aleg clienții din Târgoviște
-          </h2>
-          <p className="text-grey-600">
-            Lucrez curat, respect termenul și spun lucrurilor pe nume.
-          </p>
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <p className="inline-flex rounded-full bg-white border border-grey-200 px-4 py-1.5 text-sm font-semibold text-grey-700 mb-4">De ce noi</p>
+          <h2 className="mb-4 text-balance">De ce mă aleg clienții din Târgoviște</h2>
+          <p className="text-grey-600 text-lg text-balance">Focus pe calitate, organizare și comunicare clară pe tot parcursul lucrării.</p>
         </div>
 
-        {/* Cards Grid - 3 columns */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {benefits.map((item, i) => (
-            <div 
-              key={i} 
-              className="bg-white rounded-2xl shadow-sm border border-grey-100 p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center"
-            >
-              {/* Icon Image */}
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-inner">
-                <img 
-                  src={item.icon} 
-                  alt={item.alt}
-                  className="w-12 h-12 object-contain drop-shadow-md"
-                />
+        <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+          {benefits.map((item) => (
+            <article key={item.title} className="surface-card p-7 text-center hover:shadow-medium transition-shadow duration-300">
+              <div className="w-20 h-20 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200/60 flex items-center justify-center">
+                <img src={item.icon} alt={item.alt} className="w-12 h-12 object-contain" loading="lazy" />
               </div>
-              
-              {/* Title */}
-              <h3 className="font-semibold text-black text-xl mb-3">
-                {item.title}
-              </h3>
-              
-              {/* Description */}
-              <p className="text-grey-600 text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+              <h3 className="text-black mb-3">{item.title}</h3>
+              <p className="text-grey-600 text-sm leading-relaxed">{item.description}</p>
+            </article>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-14 text-center">
-          <a 
-            href="tel:0774613207"
-            className="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-10 py-5 rounded-lg transition-colors text-lg shadow-lg shadow-brand/20"
-          >
-            Cere ofertă gratuită
+        <div className="mt-10 text-center">
+          <a href="tel:0774613207" className="btn-primary px-7 py-3.5 text-base">
+            Sună pentru evaluare gratuită
           </a>
-          <p className="text-grey-500 text-sm mt-4">
-            Răspund în maxim 24h
-          </p>
         </div>
       </div>
     </section>

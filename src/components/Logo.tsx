@@ -6,11 +6,7 @@ interface LogoProps {
   size?: "sm" | "md" | "lg";
 }
 
-export function Logo({ 
-  className, 
-  variant = "dark",
-  size = "md" 
-}: LogoProps) {
+export function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
   const textColors = {
     dark: "text-black",
     light: "text-white",
@@ -18,20 +14,14 @@ export function Logo({
   };
 
   const sizes = {
-    sm: "text-lg",
-    md: "text-xl",
-    lg: "text-2xl",
+    sm: "text-[1.35rem]",
+    md: "text-[1.55rem]",
+    lg: "text-[1.9rem]",
   };
 
   return (
-    <div className={cn("flex items-center", className)}>
-      <span 
-        className={cn(
-          "font-bold tracking-tight",
-          sizes[size],
-          textColors[variant]
-        )}
-      >
+    <div className={cn("flex items-center leading-none", className)}>
+      <span className={cn("font-display font-extrabold tracking-[-0.03em]", sizes[size], textColors[variant])}>
         Pensulacurata
         <span className="text-brand">.</span>
       </span>
@@ -39,19 +29,10 @@ export function Logo({
   );
 }
 
-export function LogoMark({ 
-  className 
-}: { 
-  className?: string;
-}) {
+export function LogoMark({ className }: { className?: string }) {
   return (
-    <div 
-      className={cn(
-        "w-12 h-12 rounded-lg bg-brand flex items-center justify-center",
-        className
-      )}
-    >
-      <span className="text-white font-bold text-xl">
+    <div className={cn("w-12 h-12 rounded-xl bg-brand flex items-center justify-center", className)}>
+      <span className="text-white font-display font-extrabold text-xl tracking-tight">
         P
         <span className="text-white/90">.</span>
       </span>

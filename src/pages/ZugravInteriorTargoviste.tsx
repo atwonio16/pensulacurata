@@ -1,13 +1,13 @@
-import { SEOPageTemplate } from "@/components/SEOPageTemplate";
+﻿import { SEOPageTemplate } from "@/components/SEOPageTemplate";
 
 export function ZugravInteriorTargoviste() {
   return (
     <SEOPageTemplate
-      title="Zugrav Interior Târgoviște | Vopsitorie | Gletuit"
+      title="Zugrav Interior Târgoviște | Lavabilă, Glet și Finisaje"
       headline="Zugrav interior în Târgoviște"
-      description="Zugrav interior în Târgoviște. Specializat în zugrăvit, gletuit și finisaje. Sună: 0774 613 207"
+      description="Zugrav interior în Târgoviște, specializat în lavabilă, glet și finisaje pentru apartamente și case. Lucrări curate, termen clar. Sună: 0774 613 207"
       locationName="Târgoviște - Interior"
-      locationDescription="Mă specializez în zugrăveli interioare pentru locuințe și spații comerciale din Târgoviște. De la apartamente în blocuri vechi până la case moderne. Folosesc vopsele lavabile de calitate care rezistă în timp."
+      locationDescription="Realizez zugrăveli interioare pentru apartamente, case și birouri din Târgoviște. Pregătesc pereții corect, aplic lavabilă uniform și las locuința curată la final."
       areaServed={[
         "Apartamente în bloc",
         "Case individuale",
@@ -15,6 +15,14 @@ export function ZugravInteriorTargoviste() {
         "Spații comerciale",
         "Birouri",
         "Spații industriale",
+      ]}
+      canonicalPath="/zugrav-interior-targoviste"
+      keywords={[
+        "zugrav interior târgoviște",
+        "lavabilă târgoviște",
+        "glet târgoviște",
+        "finisaje interioare târgoviște",
+        "zugrăveli interioare târgoviște",
       ]}
     />
   );

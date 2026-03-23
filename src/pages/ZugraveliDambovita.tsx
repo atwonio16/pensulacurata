@@ -1,13 +1,13 @@
-import { SEOPageTemplate } from "@/components/SEOPageTemplate";
+﻿import { SEOPageTemplate } from "@/components/SEOPageTemplate";
 
 export function ZugraveliDambovita() {
   return (
     <SEOPageTemplate
-      title="Zugrăveli Dâmbovița | Zugrav Județul Dâmbovița"
+      title="Zugrăveli Dâmbovița | Zugrav Județul Dâmbovița | Pensula Curată"
       headline="Zugrăveli în județul Dâmbovița"
-      description="Servicii de zugrăvit în județul Dâmbovița. Târgoviște, Moreni, Pucioasa, Găești, Titu. Sună: 0774 613 207"
+      description="Zugrav în Dâmbovița pentru locuințe și spații comerciale. Zugrăveli interioare, lavabilă și finisaje în Târgoviște, Moreni, Pucioasa, Găești și Titu."
       locationName="Județul Dâmbovița"
-      locationDescription="Mă deplasez în toate localitățile din județul Dâmbovița. Târgoviște, Moreni, Pucioasa, Găești, Titu și satele din împrejurimi. Transport gratuit în raza de 50km din Târgoviște."
+      locationDescription="Mă deplasez în localitățile din Dâmbovița pentru lucrări curate și bine organizate. Primești estimare clară, termen de execuție și materiale potrivite lucrării tale."
       areaServed={[
         "Târgoviște",
         "Moreni",
@@ -17,6 +17,14 @@ export function ZugraveliDambovita() {
         "Fieni",
         "Răcari",
         "Satele din împrejurimi",
+      ]}
+      canonicalPath="/zugraveli-dambovita"
+      keywords={[
+        "zugrav dâmbovița",
+        "zugrăveli dâmbovița",
+        "lavabilă dâmbovița",
+        "zugrav târgoviște",
+        "zugrăveli interioare dâmbovița",
       ]}
     />
   );

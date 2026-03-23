@@ -1,30 +1,23 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ========================================
-   PENSULA CURATA - DESIGN SYSTEM
-   Simple, Clean, Harmonious
-   ======================================== */
-
-/* ---------- CSS VARIABLES ---------- */
 :root {
   --primary: 24 95% 53%;
-  --primary-dark: 17 88% 49%;
-  --black: 0 0% 8%;
-  --dark-grey: 0 0% 35%;
-  --mid-grey: 0 0% 50%;
-  --light-grey: 30 8% 96%;
-  --border-grey: 30 8% 88%;
+  --primary-dark: 18 89% 49%;
+  --black: 0 0% 10%;
+  --dark-grey: 24 8% 31%;
+  --mid-grey: 24 5% 45%;
+  --light-grey: 28 18% 97%;
+  --border-grey: 26 12% 89%;
   --background: 0 0% 100%;
-  --foreground: 0 0% 8%;
-  --muted: 30 8% 96%;
-  --muted-foreground: 0 0% 35%;
-  --border: 30 8% 88%;
-  --radius: 0.5rem;
+  --foreground: 0 0% 10%;
+  --muted: 28 18% 97%;
+  --muted-foreground: 24 8% 38%;
+  --border: 26 12% 89%;
+  --radius: 0.85rem;
 }
 
-/* ---------- BASE STYLES ---------- */
 * {
   border-color: hsl(var(--border));
 }
@@ -37,72 +30,73 @@ html {
 }
 
 body {
-  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-  background-color: hsl(var(--background));
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  background: hsl(var(--background));
   color: hsl(var(--foreground));
-  line-height: 1.6;
+  line-height: 1.65;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   overflow-x: hidden;
 }
 
-/* ---------- TYPOGRAPHY ---------- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sora", "Manrope", system-ui, sans-serif;
+  letter-spacing: -0.02em;
   color: hsl(var(--black));
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.15;
-  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  font-weight: 700;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 600;
+  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  line-height: 1.15;
+  font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  font-weight: 600;
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height: 1.28;
+  font-weight: 700;
 }
 
 p {
   color: hsl(var(--dark-grey));
-  line-height: 1.7;
 }
 
-/* ---------- UTILITY CLASSES ---------- */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-/* Section spacing */
-.section-padding {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
+  .container-custom {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
-@media (min-width: 768px) {
-  .section-padding {
+  .section-wrap {
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
-}
 
-/* Container */
-.container-custom {
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  .surface-card {
+    background: white;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.03);
+  }
 }
 
 @media (min-width: 640px) {
@@ -117,9 +111,13 @@ p {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+
+  .section-wrap {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 
-/* ---------- BUTTON STYLES ---------- */
 @layer components {
   .btn-primary {
     display: inline-flex;
@@ -127,19 +125,20 @@ p {
     justify-content: center;
     gap: 0.5rem;
     background-color: hsl(var(--primary));
-    color: white;
-    font-weight: 500;
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius);
-    transition: all 200ms ease;
-    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.8rem;
+    transition: all 220ms ease;
+    border: 1px solid transparent;
     cursor: pointer;
     white-space: nowrap;
   }
 
   .btn-primary:hover {
     background-color: hsl(var(--primary-dark));
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
@@ -147,14 +146,14 @@ p {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: transparent;
+    background-color: #fff;
     color: hsl(var(--dark-grey));
-    font-weight: 500;
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.8rem;
     border: 1px solid hsl(var(--border-grey));
-    transition: all 200ms ease;
+    transition: all 220ms ease;
     cursor: pointer;
     white-space: nowrap;
   }
@@ -162,36 +161,28 @@ p {
   .btn-secondary:hover {
     border-color: hsl(var(--primary));
     color: hsl(var(--primary));
+    transform: translateY(-1px);
   }
 }
 
-/* ---------- SHADCN OVERRIDES ---------- */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
-    --primary: 24 95% 53%;
+    --popover-foreground: 0 0% 10%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 30 8% 96%;
-    --secondary-foreground: 0 0% 8%;
-    --muted: 30 8% 96%;
-    --muted-foreground: 0 0% 35%;
-    --accent: 30 8% 96%;
-    --accent-foreground: 0 0% 8%;
+    --secondary: 28 18% 97%;
+    --secondary-foreground: 0 0% 10%;
+    --accent: 28 18% 97%;
+    --accent-foreground: 0 0% 10%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 30 8% 88%;
-    --input: 30 8% 88%;
+    --input: 26 12% 89%;
     --ring: 24 95% 53%;
-    --radius: 0.5rem;
   }
 }
 
-/* ---------- FOCUS & SELECTION ---------- */
 :focus-visible {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
@@ -199,10 +190,9 @@ p {
 
 ::selection {
   background-color: hsl(var(--primary));
-  color: white;
+  color: #fff;
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 640px) {
   html {
     font-size: 15px;

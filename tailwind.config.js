@@ -63,8 +63,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Outfit", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Manrope", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Sora", "Manrope", "system-ui", "sans-serif"],
+        hero: ["Syne", "Sora", "Manrope", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
