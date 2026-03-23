@@ -1,44 +1,78 @@
-import { Check } from "lucide-react";
-
-const points = [
-  "Lucru curat și organizat",
-  "Termen respectat",
-  "Materiale de calitate",
-  "Garanție 2 ani",
-  "Disponibil și weekend",
+const benefits = [
+  {
+    title: "Lucrez curat",
+    description: "Acopăr tot înainte de lucru și las curat după. Nu trebuie să faci curat după mine.",
+    icon: "/images/icon-clean.png",
+    alt: "Icon lucrări curate",
+  },
+  {
+    title: "Respect termenul",
+    description: "Stabilim un termen și îl respect. Fără întârzieri sau scuze.",
+    icon: "/images/icon-time.png",
+    alt: "Icon respect termen",
+  },
+  {
+    title: "Preț corect de la început",
+    description: "Spun prețul clar de la început. Fără costuri ascunse sau surprize.",
+    icon: "/images/icon-price.png",
+    alt: "Icon preț corect",
+  },
 ];
 
 export function WhyChooseUs() {
   return (
     <section className="py-16 md:py-20 bg-white border-t border-grey-100">
       <div className="container-custom">
-        <div className="max-w-xl mx-auto text-center mb-12">
-          <h2 className="text-black mb-3 text-2xl md:text-3xl">
-            De ce să mă alegi
+        {/* Header */}
+        <div className="max-w-xl mx-auto text-center mb-14">
+          <h2 className="text-black text-2xl md:text-3xl mb-3">
+            De ce mă aleg clienții din Târgoviște
           </h2>
           <p className="text-grey-600">
-            Fiecare lucrare e făcută cu atenție și respect.
+            Lucrez curat, respect termenul și spun lucrurilor pe nume.
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="grid sm:grid-cols-2 gap-4">
-            {points.map((p, i) => (
-              <div key={i} className="flex items-center gap-3 bg-grey-50 rounded-lg p-4">
-                <Check className="w-5 h-5 text-brand flex-shrink-0" />
-                <span className="text-grey-700 text-sm">{p}</span>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-10 text-center">
-            <a 
-              href="tel:0774613207"
-              className="btn-primary"
+        {/* Cards Grid - 3 columns */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {benefits.map((item, i) => (
+            <div 
+              key={i} 
+              className="bg-white rounded-2xl shadow-sm border border-grey-100 p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center"
             >
-              Sună pentru ofertă
-            </a>
-          </div>
+              {/* Icon Image */}
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-inner">
+                <img 
+                  src={item.icon} 
+                  alt={item.alt}
+                  className="w-12 h-12 object-contain drop-shadow-md"
+                />
+              </div>
+              
+              {/* Title */}
+              <h3 className="font-semibold text-black text-xl mb-3">
+                {item.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-grey-600 text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-14 text-center">
+          <a 
+            href="tel:0774613207"
+            className="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-10 py-5 rounded-lg transition-colors text-lg shadow-lg shadow-brand/20"
+          >
+            Cere ofertă gratuită
+          </a>
+          <p className="text-grey-500 text-sm mt-4">
+            Răspund în maxim 24h
+          </p>
         </div>
       </div>
     </section>
