@@ -1,7 +1,6 @@
-﻿import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
-import { motion } from "framer-motion";
+import { CheckCircle2, Phone } from "lucide-react";
 
-const benefits = ["Evaluare gratuită în 24h", "Garanție 2 ani", "Termen clar de execuție"];
+const benefits = ["Evaluare gratuita in 24h", "Garantie 2 ani", "Termen clar de executie"];
 
 export function Hero() {
   const handleCall = () => {
@@ -9,88 +8,60 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[88vh] pt-28 md:pt-32 pb-16 md:pb-20 flex items-center bg-gradient-to-br from-white via-grey-50/70 to-white overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.04]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--primary)) 1px, transparent 0)",
-            backgroundSize: "38px 38px",
-          }}
-        />
-      </div>
-
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,620px)_minmax(0,500px)] gap-10 lg:gap-8 items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="text-center lg:text-left max-w-[620px]"
-          >
-            <h1 className="font-display font-black text-black mb-6 leading-[1.03] text-[clamp(2.35rem,2.95vw,3.25rem)] tracking-[-0.035em] max-w-[620px]">
-              <span className="block">Zugrăveli și finisaje</span>
-              <span className="block">
-                de calitate în <span className="text-brand">Târgoviște</span>
-              </span>
+    <section className="bg-white pb-12 pt-[110px] md:pt-[122px] lg:pb-[72px] lg:pt-[135px]">
+      <div className="container-custom">
+        <div className="grid items-center gap-8 lg:grid-cols-[665px_500px] lg:items-start lg:gap-[34px]">
+          <div className="order-2 lg:order-1 lg:pt-[91px]">
+            <h1 className="max-w-[665px] text-[2.05rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[#222] sm:text-[2.45rem] md:text-[2.85rem] lg:text-[55.8px] lg:leading-[59.6px]">
+              Zugraveli si finisaje de calitate in <span className="text-brand">Targoviste</span>
             </h1>
 
-            <p className="text-grey-700 text-lg md:text-[1.04rem] mb-8 leading-[1.68] max-w-[590px] mx-auto lg:mx-0">
-              <span className="block">Zugrav în Târgoviște. Lucrări curate, fără stres și fără întârzieri.</span>
-              <span className="block">Ofer zugrăveli interioare și exterioare în Târgoviște și</span>
-              <span className="block">Dâmbovița.</span>
+            <p className="mt-5 max-w-[665px] text-base font-medium leading-[1.6] text-[#222] sm:text-[17px] md:text-[18px] lg:text-[19.6px] lg:leading-[27.96px]">
+              Zugrav in Targoviste. Lucrari curate, fara stres si fara intarzieri.
+              <br className="hidden lg:block" />
+              Ofer zugraveli interioare si exterioare in Targoviste si Dambovita.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3.5 mb-6 justify-center lg:justify-start">
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={handleCall} className="btn-primary text-base px-7 py-3.5">
-                <Phone className="w-5 h-5" />
-                Sună pentru ofertă
-              </motion.button>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-[15px]">
+              <button
+                onClick={handleCall}
+                className="cta-base cta-primary inline-flex h-[49.6px] items-center justify-center gap-2 rounded-[12.8px] bg-brand px-[28.8px] font-['Montserrat'] font-bold tracking-[0.04em] text-white"
+              >
+                <Phone className="h-5 w-5" />
+                Suna pentru oferta
+              </button>
 
-              <motion.a
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <a
                 href="https://wa.me/40774613207"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary text-base px-7 py-3.5"
+                className="cta-base cta-outline inline-flex h-[53.6px] items-center justify-center rounded-[12.8px] border border-[#e6e3e0] bg-white px-[28.8px] font-['Montserrat'] font-bold tracking-[0.04em] text-[#222]"
               >
                 Scrie pe WhatsApp
-                <ArrowRight className="w-4 h-4" />
-              </motion.a>
+              </a>
             </div>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center lg:justify-start pt-1">
+            <div className="mt-[10px] flex flex-wrap items-center gap-x-6 gap-y-2">
               {benefits.map((benefit) => (
-                <div key={benefit} className="inline-flex items-center gap-2 text-[0.93rem] text-grey-700 whitespace-nowrap">
-                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <div key={benefit} className="inline-flex items-center gap-2 text-[14.9px] font-medium leading-[24.55px] text-[#222]">
+                  <CheckCircle2 className="h-4 w-4 text-[#22c55e]" />
                   {benefit}
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="lg:max-w-[500px] lg:ml-auto w-full"
-          >
-            <div className="relative">
-              <div className="absolute -top-6 -right-4 w-32 h-32 bg-brand/15 rounded-full blur-3xl" />
-              <div className="absolute -bottom-8 -left-5 w-40 h-40 bg-brand/10 rounded-full blur-3xl" />
-
-              <div className="relative rounded-3xl overflow-hidden border border-grey-200 bg-white shadow-medium">
-                <div className="aspect-[5/4] lg:aspect-[5/5]">
-                  <img
-                    src="/images/zugraveli-interioare-targoviste-camera-alba.jpg"
-                    alt="Zugrav profesionist în Târgoviște la final de lucrare interioară"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+          <div className="order-1 mx-auto w-full max-w-[500.2px] lg:order-2">
+            <div className="overflow-hidden rounded-[24px] border border-[#e7e5e4] bg-white p-px">
+              <div className="aspect-square w-full">
+                <img
+                  src="/images/zugraveli-interioare-targoviste-camera-alba.jpg"
+                  alt="Zugrav profesionist in Targoviste la final de lucrare interioara"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

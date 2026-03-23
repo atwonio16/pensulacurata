@@ -1,4 +1,4 @@
-﻿import { SEOPageTemplate } from "@/components/SEOPageTemplate";
+import { SEOPageTemplate } from "@/components/SEOPageTemplate";
 
 export function ZugraveliTargoviste() {
   return (

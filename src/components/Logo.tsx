@@ -8,15 +8,15 @@ interface LogoProps {
 
 export function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
   const textColors = {
-    dark: "text-black",
+    dark: "text-[#141414]",
     light: "text-white",
     orange: "text-brand",
   };
 
   const sizes = {
-    sm: "text-[1.35rem]",
-    md: "text-[1.55rem]",
-    lg: "text-[1.9rem]",
+    sm: "text-[20px]",
+    md: "text-[24.8px]",
+    lg: "text-[30px]",
   };
 
   return (
@@ -31,8 +31,8 @@ export function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
 
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <div className={cn("w-12 h-12 rounded-xl bg-brand flex items-center justify-center", className)}>
-      <span className="text-white font-display font-extrabold text-xl tracking-tight">
+    <div className={cn("flex h-12 w-12 items-center justify-center rounded-xl bg-brand", className)}>
+      <span className="font-display text-xl font-extrabold tracking-tight text-white">
         P
         <span className="text-white/90">.</span>
       </span>

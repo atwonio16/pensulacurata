@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 interface PageSEOProps {

@@ -1,11 +1,11 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --primary: 24 95% 53%;
   --primary-dark: 18 89% 49%;
-  --black: 0 0% 10%;
+  --black: 0 0% 13%;
   --dark-grey: 24 8% 31%;
   --mid-grey: 24 5% 45%;
   --light-grey: 28 18% 97%;
@@ -24,8 +24,6 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
@@ -53,23 +51,23 @@ h6 {
 h1 {
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.08;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
   line-height: 1.15;
   font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
-  line-height: 1.28;
+  font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+  line-height: 1.3;
   font-weight: 700;
 }
 
 p {
-  color: hsl(var(--dark-grey));
+  color: #222;
 }
 
 @layer utilities {
@@ -87,15 +85,14 @@ p {
   }
 
   .section-wrap {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .surface-card {
     background: white;
     border: 1px solid hsl(var(--border));
     border-radius: 1rem;
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.03);
   }
 }
 
@@ -113,12 +110,50 @@ p {
   }
 
   .section-wrap {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-custom {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @layer components {
+  .cta-base {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  @media (hover: hover) {
+    .cta-base:hover {
+      transform: translateY(-1px);
+    }
+
+    .cta-base:active {
+      transform: translateY(0);
+    }
+  }
+
+  .cta-primary:hover {
+    background-color: hsl(var(--primary-dark));
+  }
+
+  .cta-outline:hover {
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+  }
+
+  .cta-whatsapp:hover {
+    background-color: #20bd59;
+  }
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -126,19 +161,20 @@ p {
     gap: 0.5rem;
     background-color: hsl(var(--primary));
     color: #fff;
+    font-family: "Montserrat", "Manrope", system-ui, sans-serif;
     font-weight: 700;
-    font-size: 0.95rem;
-    padding: 0.85rem 1.5rem;
+    letter-spacing: 0.04em;
+    font-size: 1rem;
+    padding: 0.78rem 1.45rem;
     border-radius: 0.8rem;
-    transition: all 220ms ease;
     border: 1px solid transparent;
+    transition: all 220ms ease;
     cursor: pointer;
     white-space: nowrap;
   }
 
   .btn-primary:hover {
     background-color: hsl(var(--primary-dark));
-    transform: translateY(-1px);
   }
 
   .btn-secondary {
@@ -148,9 +184,11 @@ p {
     gap: 0.5rem;
     background-color: #fff;
     color: hsl(var(--dark-grey));
+    font-family: "Montserrat", "Manrope", system-ui, sans-serif;
     font-weight: 700;
-    font-size: 0.95rem;
-    padding: 0.85rem 1.5rem;
+    letter-spacing: 0.04em;
+    font-size: 1rem;
+    padding: 0.78rem 1.45rem;
     border-radius: 0.8rem;
     border: 1px solid hsl(var(--border-grey));
     transition: all 220ms ease;
@@ -161,7 +199,18 @@ p {
   .btn-secondary:hover {
     border-color: hsl(var(--primary));
     color: hsl(var(--primary));
-    transform: translateY(-1px);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
   }
 }
 
