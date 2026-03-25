@@ -70,30 +70,39 @@ function FAQColumn({
   items,
   openIndex,
   setOpenIndex,
+  animateFromIndex = null,
 }: {
   items: Array<FAQItem & { globalIndex: number }>;
   openIndex: number;
   setOpenIndex: (index: number) => void;
+  animateFromIndex?: number | null;
 }) {
   return (
     <div className="space-y-3">
-      {items.map((item) => {
+      {items.map((item, index) => {
         const isOpen = openIndex === item.globalIndex;
+        const shouldAnimateIn = animateFromIndex !== null && index >= animateFromIndex;
 
         return (
-          <article key={item.globalIndex} className="overflow-hidden rounded-2xl border border-[#f2f2f2] bg-white">
+          <motion.article
+            key={item.globalIndex}
+            initial={shouldAnimateIn ? { opacity: 0, y: 12 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, ease: "easeOut", delay: shouldAnimateIn ? (index - animateFromIndex) * 0.05 : 0 }}
+            className="overflow-hidden rounded-2xl border border-[#f2f2f2] bg-white"
+          >
             <button
               onClick={() => setOpenIndex(item.globalIndex)}
-              className="flex w-full items-center justify-between gap-3 p-4 text-left md:p-5"
+              className="flex w-full items-center justify-between gap-3 p-3.5 text-left md:p-5"
               aria-expanded={isOpen}
             >
-              <span className="text-sm font-bold leading-relaxed text-black md:text-[15px]">{item.q}</span>
+              <span className="text-[12px] font-bold leading-[1.4] text-black md:text-[15px] md:leading-relaxed">{item.q}</span>
               <motion.span
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: 0.22 }}
                 className="flex-shrink-0 text-brand"
               >
-                <ChevronDown className="h-5 w-5" />
+                <ChevronDown className="h-4 w-4 md:h-5 md:w-5" />
               </motion.span>
             </button>
 
@@ -107,13 +116,13 @@ function FAQColumn({
                   transition={{ duration: 0.25, ease: "easeOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="px-4 pb-4 md:px-5 md:pb-5">
-                    <p className="text-sm leading-relaxed text-[#222]">{item.a}</p>
+                  <div className="px-3.5 pb-3.5 md:px-5 md:pb-5">
+                    <p className="text-[12px] leading-[1.5] text-[#222] md:text-sm md:leading-relaxed">{item.a}</p>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-          </article>
+          </motion.article>
         );
       })}
     </div>
@@ -123,6 +132,7 @@ function FAQColumn({
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number>(0);
   const [visibleMobileCount, setVisibleMobileCount] = useState(5);
+  const [animateFromIndex, setAnimateFromIndex] = useState<number | null>(null);
 
   const { leftColumn, rightColumn, mobileItems, schema } = useMemo(() => {
     const midpoint = Math.ceil(faqs.length / 2);
@@ -148,13 +158,13 @@ export function FAQ() {
   }, []);
 
   return (
-    <section className="bg-white py-14 md:py-16 lg:py-[78px]" id="intrebari-frecvente">
+    <section className="bg-white py-10 md:py-16 lg:py-[78px]" id="intrebari-frecvente">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <div className="container-custom max-w-[1200px]">
-        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
-          <h2 className="mb-4">Întrebări frecvente</h2>
-          <p className="text-balance text-lg text-[#222]">
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-12">
+          <h2 className="mb-2 text-[27px] leading-[1.15] md:mb-4 md:text-[clamp(1.9rem,3vw,2.45rem)]">Întrebări frecvente</h2>
+          <p className="text-balance text-[13px] leading-[1.55] text-[#222] md:text-lg">
             Răspunsuri clare pentru cele mai căutate întrebări despre zugrăveli în Târgoviște și Dâmbovița.
           </p>
         </div>
@@ -164,15 +174,19 @@ export function FAQ() {
             items={mobileItems.slice(0, visibleMobileCount)}
             openIndex={openIndex}
             setOpenIndex={setOpenIndex}
+            animateFromIndex={animateFromIndex}
           />
 
           {visibleMobileCount < mobileItems.length && (
             <div className="pt-2 text-center">
               <button
                 onClick={() =>
-                  setVisibleMobileCount((prev) => Math.min(prev + 3, mobileItems.length))
+                  setVisibleMobileCount((prev) => {
+                    setAnimateFromIndex(prev);
+                    return Math.min(prev + 3, mobileItems.length);
+                  })
                 }
-                className="text-sm font-semibold text-brand"
+                className="text-[12px] font-semibold text-brand md:text-sm"
               >
                 Vezi mai multe întrebări
               </button>
@@ -188,3 +202,4 @@ export function FAQ() {
     </section>
   );
 }
+

@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, MessageCircle, Phone, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { MessageCircle, Phone, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 
+type NavLink =
+  | { type: "section"; href: string; label: string }
+  | { type: "route"; to: string; label: string };
+
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -21,14 +27,20 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
-  const navLinks = [
-    { href: "#servicii", label: "Servicii" },
-    { href: "#lucrari", label: "Lucrări" },
-    { href: "#preturi", label: "Preturi" },
-    { href: "#contact", label: "Contact" },
+  const navLinks: NavLink[] = [
+    { type: "section", href: "#servicii", label: "Servicii" },
+    { type: "route", to: "/lucrari", label: "Lucrări" },
+    { type: "section", href: "#preturi", label: "Preturi" },
+    { type: "section", href: "#contact", label: "Contact" },
   ];
 
   const scrollToSection = (href: string) => {
+    if (location.pathname !== "/") {
+      navigate(`/${href}`);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       const headerOffset = 84;
@@ -47,46 +59,67 @@ export function Navbar() {
     <>
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#ece9e9] bg-white transition-all duration-200">
         <div className="container-custom">
-          <nav className="flex h-20 items-center justify-between gap-3">
+          <nav className="flex h-14 items-center justify-between gap-3 lg:h-20">
             <Link to="/" className="flex shrink-0 items-center">
-              <Logo size="md" />
+              <Logo size="sm" className="lg:hidden" />
+              <Logo size="md" className="hidden lg:flex" />
             </Link>
 
             <div className="hidden items-center gap-7 lg:flex">
               {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="px-0 py-2 text-[16px] font-bold leading-6 text-[#222] transition-colors hover:text-brand"
-                >
-                  {link.label}
-                </button>
+                link.type === "route" ? (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="px-0 py-1.5 font-['Sora'] text-[15px] font-semibold leading-6 tracking-[-0.01em] text-[#222] transition-colors hover:text-brand"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className="px-0 py-1.5 font-['Sora'] text-[15px] font-semibold leading-6 tracking-[-0.01em] text-[#222] transition-colors hover:text-brand"
+                  >
+                    {link.label}
+                  </button>
+                )
               ))}
             </div>
 
             <div className="hidden lg:block">
               <button
                 onClick={handleCall}
-                className="cta-base cta-primary inline-flex h-[42px] items-center justify-center rounded-[12.8px] bg-brand px-[31px] font-['Montserrat'] text-[16px] font-bold tracking-[0.04em] text-white"
+                className="cta-base cta-primary inline-flex h-[38px] items-center justify-center rounded-[11px] bg-brand px-[26px] font-['Sora'] text-[14px] font-semibold tracking-[0.02em] text-white"
               >
                 Sună acum
               </button>
             </div>
 
-            <a
-              href="tel:0774613207"
-              className="cta-base cta-primary hidden h-10 items-center justify-center rounded-xl bg-brand px-4 text-sm font-bold text-white sm:inline-flex lg:hidden"
-            >
-              Sună
-            </a>
-
             <button
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-grey-200 bg-white lg:hidden"
+              className="relative flex h-10 w-10 items-center justify-center text-[#111] lg:hidden"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               aria-label="Meniu"
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span
+                className={cn(
+                  "absolute block h-[2.6px] w-6 rounded-full bg-current transition-all duration-300 ease-out",
+                  isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[7px] rotate-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute block h-[2.6px] w-6 rounded-full bg-current transition-all duration-300 ease-out",
+                  isMobileMenuOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute block h-[2.6px] w-6 rounded-full bg-current transition-all duration-300 ease-out",
+                  isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[7px] rotate-0"
+                )}
+              />
             </button>
           </nav>
         </div>
@@ -123,13 +156,24 @@ export function Navbar() {
 
           <nav className="space-y-2">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="w-full rounded-xl px-3 py-3 text-left text-lg font-semibold text-black transition-colors hover:bg-grey-50"
-              >
-                {link.label}
-              </button>
+              link.type === "route" ? (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="block w-full rounded-xl px-3 py-3 text-left text-lg font-semibold text-black transition-colors hover:bg-grey-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className="w-full rounded-xl px-3 py-3 text-left text-lg font-semibold text-black transition-colors hover:bg-grey-50"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
           </nav>
 

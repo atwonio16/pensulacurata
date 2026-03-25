@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const images = [
   {
     src: "/images/zugraveli-interior-hol-parchet-finist.jpg",
@@ -21,18 +23,35 @@ const images = [
   },
 ] as const;
 
-export function Gallery() {
+interface GalleryProps {
+  title?: string;
+  subtitle?: string;
+  sectionId?: string;
+  showMoreLink?: boolean;
+}
+
+const defaultSubtitle =
+  "Lucrări de zugrăveli în Târgoviște și Dâmbovița pentru apartamente, case și spații comerciale. Vezi rezultate reale și cere o ofertă gratuită.";
+
+export function Gallery({
+  title = "Lucrări în Târgoviște și Dâmbovița",
+  subtitle = defaultSubtitle,
+  sectionId = "lucrari",
+  showMoreLink = false,
+}: GalleryProps) {
   return (
-    <section id="lucrari" className="bg-white py-14 md:py-16 lg:py-[78px]">
+    <section id={sectionId} className="bg-white py-10 md:py-16 lg:py-[78px]">
       <div className="container-custom">
-        <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
-          <h2 className="mb-4 text-balance">Lucrări în Târgoviște și Dâmbovița</h2>
-          <p className="text-balance text-lg text-[#222]">
-            Imagini reale din proiecte finalizate. Fără randări, fără poze de stock, doar lucrări executate de mine.
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-10">
+          <h2 className="mb-2 text-balance text-[27px] leading-[1.15] md:mb-4 md:text-[clamp(1.9rem,3vw,2.45rem)]">
+            {title}
+          </h2>
+          <p className="text-balance text-[13px] leading-[1.55] text-[#222] md:text-lg">
+            {subtitle}
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 md:gap-[30px]">
+        <div className="grid gap-3 md:grid-cols-2 md:gap-[30px]">
           {images.map((img, i) => (
             <figure
               key={img.alt}
@@ -42,12 +61,23 @@ export function Gallery() {
                   : "relative overflow-hidden rounded-2xl"
               }
             >
-              <div className="aspect-[583/416] w-full">
+              <div className="aspect-[16/10] w-full md:aspect-[583/416]">
                 <img src={img.src} alt={img.alt} loading={i > 1 ? "lazy" : "eager"} className="h-full w-full object-cover" />
               </div>
             </figure>
           ))}
         </div>
+
+        {showMoreLink && (
+          <div className="mt-6 text-center md:mt-8">
+            <Link
+              to="/lucrari"
+              className="cta-base inline-flex items-center justify-center text-[13px] font-bold leading-none text-[#3156f5] underline decoration-[1.5px] underline-offset-[5px] md:text-[16px]"
+            >
+              Vezi portofoliu complet
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

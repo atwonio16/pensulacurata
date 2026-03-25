@@ -14,7 +14,7 @@ export function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
   };
 
   const sizes = {
-    sm: "text-[20px]",
+    sm: "text-[18px]",
     md: "text-[24.8px]",
     lg: "text-[30px]",
   };
