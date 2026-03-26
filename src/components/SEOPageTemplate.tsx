@@ -1,11 +1,12 @@
-import { ArrowLeft, Phone } from "lucide-react";
+﻿import { ArrowLeft } from "lucide-react";
+import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
 import { Link } from "react-router-dom";
 import { FAQ } from "./FAQ";
 import { Logo } from "./Logo";
 import { PageSEO } from "./PageSEO";
 import { PageSchemaMarkup } from "./SchemaMarkup";
 import { FinalCTA } from "@/sections/FinalCTA";
-import { Footer } from "@/sections/Footer";
+import { SiteFooter } from "@/sections/SiteFooter";
 
 interface SEOPageTemplateProps {
   title: string;
@@ -33,32 +34,33 @@ export function SEOPageTemplate({
       <PageSEO title={title} description={description} canonicalPath={canonicalPath} keywords={keywords} />
       <PageSchemaMarkup title={title} description={description} />
 
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl">
+      <header className="fixed left-0 right-0 top-0 z-50 bg-white/95 backdrop-blur-xl">
         <div className="container-custom">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex h-16 items-center justify-between">
             <Link to="/">
               <Logo size="sm" />
             </Link>
-            <a href="tel:0774613207" className="btn-primary text-sm px-4 py-2.5">
+            <a href="tel:0774613207" className="btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm">
+              <PhoneSolidIcon />
               Sună acum
             </a>
           </div>
         </div>
       </header>
 
-      <section className="pt-28 pb-14 md:pt-32 bg-white">
+      <section className="bg-white pb-10 pt-24 md:pt-28">
         <div className="container-custom max-w-3xl text-center">
-          <Link to="/" className="inline-flex items-center gap-2 text-grey-500 hover:text-brand text-sm mb-6">
-            <ArrowLeft className="w-4 h-4" />
+          <Link to="/" className="mb-6 inline-flex items-center gap-2 text-sm text-grey-500 hover:text-brand">
+            <ArrowLeft className="h-4 w-4" />
             Înapoi la pagina principală
           </Link>
 
           <h1 className="mb-4 text-balance">{headline}</h1>
-          <p className="text-grey-600 text-lg mb-6 text-balance">{description}</p>
+          <p className="mb-6 text-balance text-lg text-grey-600">{description}</p>
 
-          <a href="tel:0774613207" className="btn-primary px-6 py-3">
-            <Phone className="w-4 h-4" />
-            Sună: 0774 613 207
+          <a href="tel:0774613207" className="btn-primary inline-flex items-center gap-2 px-6 py-3">
+            <PhoneSolidIcon />
+            Discută lucrarea ta
           </a>
         </div>
       </section>
@@ -66,19 +68,19 @@ export function SEOPageTemplate({
       <section className="section-wrap bg-white">
         <div className="container-custom max-w-4xl">
           <div className="surface-card p-6 md:p-8">
-            <div className="text-center mb-8">
+            <div className="mb-8 text-center">
               <h2 className="mb-3">Servicii în {locationName}</h2>
-              <p className="text-grey-600 text-lg">{locationDescription}</p>
+              <p className="text-lg text-grey-600">{locationDescription}</p>
             </div>
 
-            <h3 className="text-black mb-3 text-center">Zone acoperite</h3>
-            <div className="grid sm:grid-cols-2 gap-2 mb-8 max-w-2xl mx-auto">
+            <h3 className="mb-3 text-center text-black">Zone acoperite</h3>
+            <div className="mx-auto mb-8 grid max-w-2xl gap-2 sm:grid-cols-2">
               {areaServed.map((area, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-grey-700 justify-center sm:justify-start rounded-lg border border-grey-200 bg-grey-50 px-3 py-2"
+                  className="flex items-center justify-center gap-2 rounded-lg border border-grey-200 bg-grey-50 px-3 py-2 text-grey-700 sm:justify-start"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand" />
                   {area}
                 </div>
               ))}
@@ -86,20 +88,20 @@ export function SEOPageTemplate({
 
             <div className="text-center">
               <h3 className="mb-3">De ce să mă alegi</h3>
-              <ul className="space-y-2 text-grey-600 max-w-lg mx-auto">
-                <li className="flex items-start gap-2 justify-center">
+              <ul className="mx-auto max-w-lg space-y-2 text-grey-600">
+                <li className="flex items-start justify-center gap-2">
                   <span className="text-[#22c55e]">✓</span>
                   Evaluare gratuită în 24h
                 </li>
-                <li className="flex items-start gap-2 justify-center">
+                <li className="flex items-start justify-center gap-2">
                   <span className="text-[#22c55e]">✓</span>
                   Garanție 2 ani
                 </li>
-                <li className="flex items-start gap-2 justify-center">
+                <li className="flex items-start justify-center gap-2">
                   <span className="text-[#22c55e]">✓</span>
                   Disponibil și în weekend
                 </li>
-                <li className="flex items-start gap-2 justify-center">
+                <li className="flex items-start justify-center gap-2">
                   <span className="text-[#22c55e]">✓</span>
                   Avans în funcție de lucrare
                 </li>
@@ -111,7 +113,11 @@ export function SEOPageTemplate({
 
       <FAQ />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </main>
   );
 }
+
+
+
+

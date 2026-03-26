@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Lucrari } from './pages/Lucrari';
+import { LucrareDetaliu } from './pages/LucrareDetaliu';
 import { ZugraveliTargoviste } from './pages/ZugraveliTargoviste';
 import { ZugraveliDambovita } from './pages/ZugraveliDambovita';
 import { ZugravInteriorTargoviste } from './pages/ZugravInteriorTargoviste';
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lucrari" element={<Lucrari />} />
+        <Route path="/lucrari/:slug" element={<LucrareDetaliu />} />
         <Route path="/zugraveli-targoviste" element={<ZugraveliTargoviste />} />
         <Route path="/zugraveli-dambovita" element={<ZugraveliDambovita />} />
         <Route path="/zugrav-interior-targoviste" element={<ZugravInteriorTargoviste />} />

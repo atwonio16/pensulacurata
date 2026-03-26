@@ -1,4 +1,5 @@
-import { CheckCircle2, Phone } from "lucide-react";
+﻿import { CheckCircle2 } from "lucide-react";
+import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
 
 const mainAreas = ["Târgoviște", "Moreni", "Pucioasa", "Găești", "Titu"];
 const bottomBenefits = [
@@ -9,7 +10,7 @@ const bottomBenefits = [
 
 export function LocalSEOSection() {
   return (
-    <section id="zone-acoperite" className="bg-white py-10 md:py-16 lg:py-[78px]" aria-labelledby="local-seo-title">
+    <section id="zone-acoperite" className="bg-white py-6 md:py-10 lg:py-11" aria-labelledby="local-seo-title">
       <div className="container-custom max-w-[1200px]">
         <div className="grid items-start gap-6 lg:grid-cols-[596px_508px] lg:gap-8">
           <article className="rounded-2xl border border-[#f2f2f2] bg-white p-4 md:p-[32.8px]">
@@ -55,8 +56,8 @@ export function LocalSEOSection() {
                 href="tel:0774613207"
                 className="cta-base cta-primary inline-flex h-10 w-full items-center justify-center gap-2 rounded-[10px] bg-brand px-5 font-['Montserrat'] text-[13px] font-bold tracking-[0.04em] text-white md:h-[52px] md:rounded-[13.6px] md:text-base"
               >
-                <Phone className="h-[18px] w-[18px]" />
-                Sună: 0774 613 207
+                <PhoneSolidIcon />
+                Sună pentru estimare
               </a>
             </div>
           </aside>
@@ -74,3 +75,6 @@ export function LocalSEOSection() {
     </section>
   );
 }
+
+
+

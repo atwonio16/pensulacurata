@@ -1,6 +1,6 @@
-﻿import { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 
 interface FAQItem {
   q: string;
@@ -66,82 +66,69 @@ const faqs: FAQItem[] = [
   },
 ];
 
-function FAQColumn({
-  items,
+const desktopFaqs = faqs.slice(0, 10);
+
+function FAQRow({
+  item,
+  globalIndex,
   openIndex,
   setOpenIndex,
-  animateFromIndex = null,
 }: {
-  items: Array<FAQItem & { globalIndex: number }>;
-  openIndex: number;
-  setOpenIndex: (index: number) => void;
-  animateFromIndex?: number | null;
+  item: FAQItem;
+  globalIndex: number;
+  openIndex: number | null;
+  setOpenIndex: (index: number | null) => void;
 }) {
+  const isOpen = openIndex === globalIndex;
+
   return (
-    <div className="space-y-3">
-      {items.map((item, index) => {
-        const isOpen = openIndex === item.globalIndex;
-        const shouldAnimateIn = animateFromIndex !== null && index >= animateFromIndex;
+    <article className="border-b border-[#e8e5e3]">
+      <button
+        onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
+        className="group flex w-full items-center justify-between gap-3 py-4 text-left md:py-4.5"
+        aria-expanded={isOpen}
+      >
+        <span className="text-[14px] font-bold leading-[1.4] text-[#111] transition-colors group-hover:text-brand md:text-[18px] md:leading-[1.35]">
+          {item.q}
+        </span>
+        <span
+          className={`inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-[2.5px] md:h-7 md:w-7 ${
+            isOpen ? "border-[#111] text-[#111]" : "border-brand text-brand"
+          }`}
+        >
+          {isOpen ? <Minus className="h-[15px] w-[15px] stroke-[3]" /> : <Plus className="h-[15px] w-[15px] stroke-[3]" />}
+        </span>
+      </button>
 
-        return (
-          <motion.article
-            key={item.globalIndex}
-            initial={shouldAnimateIn ? { opacity: 0, y: 12 } : false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut", delay: shouldAnimateIn ? (index - animateFromIndex) * 0.05 : 0 }}
-            className="overflow-hidden rounded-2xl border border-[#f2f2f2] bg-white"
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="overflow-hidden"
           >
-            <button
-              onClick={() => setOpenIndex(item.globalIndex)}
-              className="flex w-full items-center justify-between gap-3 p-3.5 text-left md:p-5"
-              aria-expanded={isOpen}
-            >
-              <span className="text-[12px] font-bold leading-[1.4] text-black md:text-[15px] md:leading-relaxed">{item.q}</span>
-              <motion.span
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.22 }}
-                className="flex-shrink-0 text-brand"
-              >
-                <ChevronDown className="h-4 w-4 md:h-5 md:w-5" />
-              </motion.span>
-            </button>
-
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  key="content"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-3.5 pb-3.5 md:px-5 md:pb-5">
-                    <p className="text-[12px] leading-[1.5] text-[#222] md:text-sm md:leading-relaxed">{item.a}</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.article>
-        );
-      })}
-    </div>
+            <p className="pb-4 pr-10 text-[12px] leading-[1.55] text-[#3f3b39] md:pb-5 md:text-[14px] md:leading-[1.6]">{item.a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </article>
   );
 }
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number>(0);
-  const [visibleMobileCount, setVisibleMobileCount] = useState(5);
-  const [animateFromIndex, setAnimateFromIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
-  const { leftColumn, rightColumn, mobileItems, schema } = useMemo(() => {
-    const midpoint = Math.ceil(faqs.length / 2);
-    const allItems = faqs.map((item, index) => ({ ...item, globalIndex: index }));
+  const { leftColumn, rightColumn, schema } = useMemo(() => {
+    const left = desktopFaqs.slice(0, 5).map((item, index) => ({ ...item, globalIndex: index }));
+    const right = desktopFaqs.slice(5, 10).map((item, index) => ({ ...item, globalIndex: index + 5 }));
 
     return {
-      leftColumn: allItems.slice(0, midpoint),
-      rightColumn: allItems.slice(midpoint),
-      mobileItems: allItems,
+      leftColumn: left,
+      rightColumn: right,
       schema: {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -157,36 +144,31 @@ export function FAQ() {
     };
   }, []);
 
+  const mobileFaqs = showAllMobile ? faqs : faqs.slice(0, 5);
+
   return (
-    <section className="bg-white py-10 md:py-16 lg:py-[78px]" id="intrebari-frecvente">
+    <section className="bg-white py-6 md:py-10 lg:py-11" id="intrebari-frecvente">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <div className="container-custom max-w-[1200px]">
-        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-12">
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-9">
           <h2 className="mb-2 text-[27px] leading-[1.15] md:mb-4 md:text-[clamp(1.9rem,3vw,2.45rem)]">Întrebări frecvente</h2>
           <p className="text-balance text-[13px] leading-[1.55] text-[#222] md:text-lg">
             Răspunsuri clare pentru cele mai căutate întrebări despre zugrăveli în Târgoviște și Dâmbovița.
           </p>
         </div>
 
-        <div className="space-y-3 md:hidden">
-          <FAQColumn
-            items={mobileItems.slice(0, visibleMobileCount)}
-            openIndex={openIndex}
-            setOpenIndex={setOpenIndex}
-            animateFromIndex={animateFromIndex}
-          />
+        <div className="md:hidden">
+          {mobileFaqs.map((item, index) => (
+            <FAQRow key={index} item={item} globalIndex={index} openIndex={openIndex} setOpenIndex={setOpenIndex} />
+          ))}
 
-          {visibleMobileCount < mobileItems.length && (
-            <div className="pt-2 text-center">
+          {!showAllMobile && (
+            <div className="pt-3">
               <button
-                onClick={() =>
-                  setVisibleMobileCount((prev) => {
-                    setAnimateFromIndex(prev);
-                    return Math.min(prev + 3, mobileItems.length);
-                  })
-                }
-                className="text-[12px] font-semibold text-brand md:text-sm"
+                type="button"
+                onClick={() => setShowAllMobile(true)}
+                className="mx-auto block w-1/2 text-center text-[13px] font-semibold text-brand transition-colors hover:text-[#e86114]"
               >
                 Vezi mai multe întrebări
               </button>
@@ -194,12 +176,31 @@ export function FAQ() {
           )}
         </div>
 
-        <div className="hidden gap-4 md:grid md:grid-cols-2 md:gap-5">
-          <FAQColumn items={leftColumn} openIndex={openIndex} setOpenIndex={setOpenIndex} />
-          <FAQColumn items={rightColumn} openIndex={openIndex} setOpenIndex={setOpenIndex} />
+        <div className="hidden gap-x-16 md:grid md:grid-cols-2">
+          <div>
+            {leftColumn.map((item) => (
+              <FAQRow
+                key={item.globalIndex}
+                item={item}
+                globalIndex={item.globalIndex}
+                openIndex={openIndex}
+                setOpenIndex={setOpenIndex}
+              />
+            ))}
+          </div>
+          <div>
+            {rightColumn.map((item) => (
+              <FAQRow
+                key={item.globalIndex}
+                item={item}
+                globalIndex={item.globalIndex}
+                openIndex={openIndex}
+                setOpenIndex={setOpenIndex}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { MessageCircle, Phone, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 type NavLink =
   | { type: "section"; href: string; label: string }
@@ -30,7 +31,7 @@ export function Navbar() {
   const navLinks: NavLink[] = [
     { type: "section", href: "#servicii", label: "Servicii" },
     { type: "route", to: "/lucrari", label: "Lucrări" },
-    { type: "section", href: "#preturi", label: "Preturi" },
+    { type: "section", href: "#preturi", label: "Prețuri" },
     { type: "section", href: "#contact", label: "Contact" },
   ];
 
@@ -66,12 +67,12 @@ export function Navbar() {
             </Link>
 
             <div className="hidden items-center gap-7 lg:flex">
-              {navLinks.map((link) => (
+              {navLinks.map((link) =>
                 link.type === "route" ? (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="px-0 py-1.5 font-['Sora'] text-[15px] font-semibold leading-6 tracking-[-0.01em] text-[#222] transition-colors hover:text-brand"
+                    className="px-0 py-1.5 font-['Sora'] text-[12px] font-extrabold uppercase leading-6 tracking-[0.08em] text-[#222] transition-colors hover:text-brand"
                   >
                     {link.label}
                   </Link>
@@ -79,20 +80,20 @@ export function Navbar() {
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className="px-0 py-1.5 font-['Sora'] text-[15px] font-semibold leading-6 tracking-[-0.01em] text-[#222] transition-colors hover:text-brand"
+                    className="px-0 py-1.5 font-['Sora'] text-[12px] font-extrabold uppercase leading-6 tracking-[0.08em] text-[#222] transition-colors hover:text-brand"
                   >
                     {link.label}
                   </button>
                 )
-              ))}
+              )}
             </div>
 
             <div className="hidden lg:block">
               <button
                 onClick={handleCall}
-                className="cta-base cta-primary inline-flex h-[38px] items-center justify-center rounded-[11px] bg-brand px-[26px] font-['Sora'] text-[14px] font-semibold tracking-[0.02em] text-white"
+                className="cta-base cta-primary inline-flex h-11 items-center justify-center rounded-[11px] bg-brand px-5 font-['Montserrat'] text-[13px] font-bold tracking-[0.04em] text-white sm:h-[49px] sm:px-7 sm:text-base sm:rounded-[12px]"
               >
-                Sună acum
+                0774 613 207
               </button>
             </div>
 
@@ -155,7 +156,7 @@ export function Navbar() {
           </div>
 
           <nav className="space-y-2">
-            {navLinks.map((link) => (
+            {navLinks.map((link) =>
               link.type === "route" ? (
                 <Link
                   key={link.to}
@@ -174,17 +175,16 @@ export function Navbar() {
                   {link.label}
                 </button>
               )
-            ))}
+            )}
           </nav>
 
           <div className="mt-8 space-y-3 border-t border-grey-200 pt-8">
             <a
               href="tel:0774613207"
-              className="cta-base cta-primary inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3.5 text-base font-bold text-white"
+              className="cta-base cta-primary inline-flex w-full items-center justify-center rounded-xl bg-brand px-4 py-3.5 text-base font-bold text-white"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Phone className="h-4 w-4" />
-              Sună: 0774 613 207
+              0774 613 207
             </a>
             <a
               href="https://wa.me/40774613207"
@@ -193,7 +193,7 @@ export function Navbar() {
               className="cta-base cta-whatsapp inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3.5 text-base font-bold text-white"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <MessageCircle className="h-4 w-4" />
+              <WhatsAppIcon />
               Scrie pe WhatsApp
             </a>
           </div>

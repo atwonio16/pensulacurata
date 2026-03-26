@@ -9,9 +9,9 @@ const includes = [
 
 export function PricingSection() {
   return (
-    <section id="preturi" className="bg-white py-10 md:py-16 lg:py-[78px]">
+    <section id="preturi" className="bg-white py-6 md:py-10 lg:py-11">
       <div className="container-custom">
-        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-10">
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-8">
           <h2 className="mb-2 text-balance text-[27px] leading-[1.15] md:mb-4 md:text-[clamp(1.9rem,3vw,2.45rem)]">
             Prețuri Zugrăveli
           </h2>
@@ -56,11 +56,7 @@ export function PricingSection() {
           </article>
 
           <div className="self-start">
-            <p className="text-[17px] font-extrabold leading-[1.16] tracking-[-0.02em] text-[#111] md:whitespace-nowrap md:text-[22px] lg:text-[24px]">
-              Uite ce lucrare am finalizat pentru doar <span className="text-[#f97316]">500 lei</span>.
-            </p>
-
-            <div className="mt-4 overflow-hidden rounded-xl border border-[#ece9e9] bg-white md:max-w-[540px]">
+            <div className="overflow-hidden rounded-xl border border-[#ece9e9] bg-white md:max-w-[540px]">
               <div className="aspect-[16/9] w-full">
                 <img
                   src="/images/zugraveli-interior-hol-parchet-finist.jpg"
@@ -70,9 +66,14 @@ export function PricingSection() {
                 />
               </div>
             </div>
+
+            <p className="mt-3 text-center text-[14px] font-extrabold leading-[1.16] tracking-[-0.02em] whitespace-nowrap text-[#111] md:text-left md:text-[22px] lg:text-[24px]">
+              Uite ce lucrare am finalizat pentru doar <span className="text-[#f97316]">500 lei</span>.
+            </p>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

@@ -1,8 +1,8 @@
-import { Navbar } from "@/components/Navbar";
+﻿import { Navbar } from "@/components/Navbar";
 import { FAQ } from "@/components/FAQ";
 import { PageSEO } from "@/components/PageSEO";
 import { SchemaMarkup } from "@/components/SchemaMarkup";
-import { Footer } from "@/sections/Footer";
+import { SiteFooter } from "@/sections/SiteFooter";
 import { FinalCTA } from "@/sections/FinalCTA";
 import { Gallery } from "@/sections/Gallery";
 import { Hero } from "@/sections/Hero";
@@ -16,7 +16,7 @@ export function Home() {
     <main className="min-h-screen bg-white">
       <PageSEO
         title="Zugrav Târgoviște | Zugrăveli Târgoviște și Dâmbovița | Pensula Curată"
-        description="Zugrav în Târgoviște și Dâmbovița. Zugrăveli interioare, lavabilă, glet și reparații pereți pentru apartamente și case. Sună acum: 0774 613 207."
+        description="Zugrav în Târgoviște și Dâmbovița. Zugrăveli interioare, lavabilă, glet și reparații pereți pentru apartamente și case. Contact rapid pentru ofertă."
         canonicalPath="/"
         keywords={[
           "zugrav târgoviște",
@@ -41,7 +41,8 @@ export function Home() {
       <LocalSEOSection />
       <FAQ />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </main>
   );
 }
+

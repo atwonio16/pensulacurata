@@ -1,4 +1,6 @@
-import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 const trustPoints = [
   "Estimare clară, fără costuri ascunse",
@@ -8,7 +10,7 @@ const trustPoints = [
 
 export function FinalCTA() {
   return (
-    <section id="contact" className="bg-white py-10 md:py-16 lg:py-[78px]">
+    <section id="contact" className="bg-white py-6 md:py-10 lg:py-11">
       <div className="container-custom max-w-[1200px]">
         <div className="rounded-2xl border border-[#e7e5e4] bg-white p-4 md:p-8 lg:p-12">
           <div className="grid items-center gap-5 lg:grid-cols-[1fr_370px] lg:gap-10">
@@ -38,8 +40,8 @@ export function FinalCTA() {
                   href="tel:0774613207"
                   className="cta-base cta-primary inline-flex h-10 w-full items-center justify-center gap-2 rounded-[10px] bg-brand px-5 font-['Montserrat'] text-[13px] font-bold tracking-[0.04em] text-white md:h-[43.4px] md:rounded-[13.6px] md:text-base"
                 >
-                  <Phone className="h-4 w-4" />
-                  Sună: 0774 613 207
+                  <PhoneSolidIcon />
+                  Sună pentru ofertă
                 </a>
 
                 <a
@@ -48,7 +50,7 @@ export function FinalCTA() {
                   rel="noopener noreferrer"
                   className="cta-base cta-whatsapp inline-flex h-10 w-full items-center justify-center gap-2 rounded-[10px] bg-[#25D366] px-5 font-['Montserrat'] text-[13px] font-bold tracking-[0.04em] text-white md:h-[43.4px] md:rounded-[13.6px] md:text-base"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppIcon />
                   Scrie pe WhatsApp
                 </a>
               </div>

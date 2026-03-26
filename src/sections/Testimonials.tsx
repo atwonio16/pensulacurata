@@ -1,33 +1,33 @@
-import { Star } from "lucide-react";
+﻿import { Star } from "lucide-react";
 
 const reviews = [
   {
     name: "Alexia Serafim",
-    loc: "Bucuresti",
-    text: "Am renovat un apartament in Targoviste si lucrarea a fost foarte curata. A acoperit tot, a respectat termenul si rezultatul final arata impecabil.",
+    loc: "București",
+    text: "Am renovat un apartament în Târgoviște și lucrarea a fost foarte curată. A acoperit tot, a respectat termenul și rezultatul final arată impecabil.",
   },
   {
     name: "Gabriel Stingaciu",
-    loc: "Targoviste",
-    text: "Am renovat un apartament in Targoviste si lucrarea a fost foarte curata. A acoperit tot, a respectat termenul si rezultatul final arata impecabil.",
+    loc: "Târgoviște",
+    text: "Am renovat un apartament în Târgoviște și lucrarea a fost foarte curată. A acoperit tot, a respectat termenul și rezultatul final arată impecabil.",
   },
   {
     name: "Gabriel Stingaciu",
-    loc: "Targoviste",
-    text: "Am renovat un apartament in Targoviste si lucrarea a fost foarte curata. A acoperit tot, a respectat termenul si rezultatul final arata impecabil.",
+    loc: "Târgoviște",
+    text: "Am renovat un apartament în Târgoviște și lucrarea a fost foarte curată. A acoperit tot, a respectat termenul și rezultatul final arată impecabil.",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="bg-white py-10 md:py-16 lg:py-[78px]">
+    <section className="bg-white py-6 md:py-10 lg:py-11">
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 md:px-8 xl:px-0">
-        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-11">
+        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-9">
           <h2 className="mb-2 text-balance text-[27px] leading-[1.15] md:mb-4 md:text-[clamp(1.9rem,3vw,2.45rem)]">
-            Recenzii reale de la clienti
+            Recenzii reale de la clienți
           </h2>
           <p className="text-balance text-[13px] leading-[1.55] text-[#222] md:text-lg">
-            Feedback autentic din lucrari de zugraveli executate in Targoviste si in localitatile din Dambovita.
+            Feedback autentic din lucrări de zugrăveli executate în Târgoviște și în localitățile din Dâmbovița.
           </p>
         </div>
 
@@ -83,3 +83,4 @@ export function Testimonials() {
     </section>
   );
 }
+
