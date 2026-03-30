@@ -1,28 +1,29 @@
 import { useLocation } from "react-router-dom";
+import { SITE_URL, toAbsoluteUrl } from "@/lib/site";
 
 export function SchemaMarkup() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    name: "Pensula Curată",
-    description: "Servicii de zugrăvit în Târgoviște și județul Dâmbovița.",
-    url: "https://pensulacurata.ro",
+    name: "Pensula Curata",
+    description: "Servicii de zugravit in Targoviste si judetul Dambovita.",
+    url: SITE_URL,
     telephone: "+40774613207",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Târgoviște",
-      addressRegion: "Dâmbovița",
+      addressLocality: "Targoviste",
+      addressRegion: "Dambovita",
       addressCountry: "RO",
     },
     areaServed: [
-      { "@type": "City", name: "Târgoviște" },
+      { "@type": "City", name: "Targoviste" },
       { "@type": "City", name: "Moreni" },
       { "@type": "City", name: "Pucioasa" },
-      { "@type": "City", name: "Găești" },
+      { "@type": "City", name: "Gaesti" },
       { "@type": "City", name: "Titu" },
-      { "@type": "AdministrativeArea", name: "Județul Dâmbovița" },
+      { "@type": "AdministrativeArea", name: "Judetul Dambovita" },
     ],
-    serviceType: ["Zugrăveli interioare", "Zugrăveli exterioare", "Lavabilă", "Glet", "Reparații pereți"],
+    serviceType: ["Zugraveli interioare", "Zugraveli exterioare", "Lavabila", "Glet", "Reparatii pereti"],
     openingHours: "Mo-Sa 08:00-20:00",
     priceRange: "RON",
   };
@@ -32,7 +33,7 @@ export function SchemaMarkup() {
 
 export function PageSchemaMarkup({ title, description }: { title: string; description: string }) {
   const location = useLocation();
-  const url = `https://pensulacurata.ro${location.pathname}`;
+  const url = toAbsoluteUrl(location.pathname);
 
   const schema = {
     "@context": "https://schema.org",
@@ -43,7 +44,7 @@ export function PageSchemaMarkup({ title, description }: { title: string; descri
     inLanguage: "ro-RO",
     about: {
       "@type": "HomeAndConstructionBusiness",
-      name: "Pensula Curată",
+      name: "Pensula Curata",
       telephone: "+40774613207",
     },
   };

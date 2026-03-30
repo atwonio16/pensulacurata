@@ -18,7 +18,7 @@ export function CookiesPolicy() {
           <h1 className="text-[30px] font-extrabold leading-[1.12] tracking-[-0.03em] text-[#222] md:text-[44px]">
             Politică cookies
           </h1>
-          <p className="mt-3 text-[13px] text-[#555] md:text-sm">Ultima actualizare: 25 martie 2026</p>
+          <p className="mt-3 text-[13px] text-[#555] md:text-sm">Ultima actualizare: 30 martie 2026</p>
 
           <div className="mt-7 space-y-6 text-[14px] leading-[1.7] text-[#222] md:text-[15px]">
             <section>
@@ -38,7 +38,16 @@ export function CookiesPolicy() {
             </section>
 
             <section>
-              <h2 className="text-[20px] font-bold text-[#111] md:text-[24px]">3. Servicii terțe</h2>
+              <h2 className="text-[20px] font-bold text-[#111] md:text-[24px]">3. Banner de consimțământ</h2>
+              <p className="mt-2">
+                La prima vizită, afișăm un banner prin care poți alege între „Doar necesare” și „Accept toate”. Alegerea
+                se salvează local în browser și poate fi modificată prin ștergerea cookie-urilor/datele site-ului din
+                browser.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-[20px] font-bold text-[#111] md:text-[24px]">4. Servicii terțe</h2>
               <p className="mt-2">
                 Accesarea linkurilor externe (de exemplu WhatsApp) poate duce la aplicarea politicilor de cookie ale
                 platformelor terțe.
@@ -46,7 +55,7 @@ export function CookiesPolicy() {
             </section>
 
             <section>
-              <h2 className="text-[20px] font-bold text-[#111] md:text-[24px]">4. Controlul cookie-urilor</h2>
+              <h2 className="text-[20px] font-bold text-[#111] md:text-[24px]">5. Controlul cookie-urilor</h2>
               <p className="mt-2">
                 Poți bloca sau șterge cookie-urile din setările browserului. Restricționarea cookie-urilor tehnice poate
                 afecta funcționarea anumitor părți ale site-ului.
