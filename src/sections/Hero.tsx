@@ -15,7 +15,7 @@ export function Hero() {
       <div className="container-custom">
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="order-1 min-w-0 text-center md:text-left">
-            <h1 className="text-[1.3rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[#222] sm:text-[1.75rem] md:text-[2.1rem] lg:text-[2.3rem] xl:text-[2.5rem]">
+            <h1 className="text-[clamp(1.7rem,7.4vw,2rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-[#222] sm:text-[1.75rem] md:text-[2.1rem] lg:text-[2.3rem] xl:text-[2.5rem]">
               <span className="block" style={{ whiteSpace: "nowrap" }}>
                 {"Zugr\u0103veli \u0219i finisaje de"}
               </span>
